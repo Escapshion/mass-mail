@@ -78,7 +78,7 @@ function sendEmail() {
             Username: "arjubano50@gmail.com",
             Password: "AB21408E930F8DF83D222DA6D0203493DE2E",
             To: email, // Send to the current valid email
-            From: "arjubano50@gmail.com",
+            From: document.getElementById('from').value,
             Subject: document.querySelector('#subject').value,
             Body: document.getElementById('msg').value
         }).then(
