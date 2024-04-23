@@ -51,12 +51,12 @@ upload.addEventListener('change', () => {
 });
 //-----------sending emails---------------
 
-function sendEmail() {
+/*function sendEmail() {
     Email.send({
         Host: "smtp.elasticemail.com",
         Username: "arjubano50@gmail.com", 
         Password: "AB21408E930F8DF83D222DA6D0203493DE2E",  
-        To: "nkkpk72@gmail.com",
+        To: "",
         From: "arjubano50@gmail.com",
         Subject: document.querySelector('#subject').value,
         Body: document.getElementById('msg').value
@@ -64,6 +64,30 @@ function sendEmail() {
         message => alert(window.valNo + " mails has been sent successfully, press " + message + " to continue.")
     );
     console.log(document.getElementById('msg').value);
+    console.log(document.getElementById('msg').innerHTML);
+    console.log(document.getElementById('msg').innerText);
+}*/
+
+function sendEmail() {
+    let validEmails = window.valMail;
+
+    // Iterate over each valid email
+    validEmails.forEach(email => {
+        Email.send({
+            Host: "smtp.elasticemail.com",
+            Username: "arjubano50@gmail.com",
+            Password: "AB21408E930F8DF83D222DA6D0203493DE2E",
+            To: email, // Send to the current valid email
+            From: "arjubano50@gmail.com",
+            Subject: document.querySelector('#subject').value,
+            Body: document.getElementById('msg').value
+        }).then(
+			message => alert(validEmails.length + " valid emails have been sent, press" + message + " to continue.")
+        );
+    });
+
+    // Display alert for the number of emails sent
+	console.log(document.getElementById('msg').value);
     console.log(document.getElementById('msg').innerHTML);
     console.log(document.getElementById('msg').innerText);
 }
